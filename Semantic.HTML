@@ -1,0 +1,654 @@
+<!-- =========================================================
+FILE: index.html
+Accessible Semantic Portfolio Website
+WCAG 2.2 + SEO Optimized + Lighthouse Friendly
+========================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>John Doe | Frontend Developer Portfolio</title>
+  <meta
+    name="description"
+    content="Professional portfolio of John Doe, frontend developer specializing in accessible and semantic web applications."
+  />
+  <meta
+    name="keywords"
+    content="Frontend Developer, Portfolio, HTML5, Accessibility, WCAG, SEO, JavaScript, Web Developer"
+  />
+  <meta name="author" content="John Doe" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="John Doe Portfolio" />
+  <meta
+    property="og:description"
+    content="Accessible and semantic frontend developer portfolio."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com" />
+  <meta property="og:image" content="https://example.com/preview.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://example.com" />
+
+  <!-- Accessibility -->
+  <meta name="theme-color" content="#111827" />
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --accent: #2563eb;
+      --gray: #6b7280;
+      --border: #d1d5db;
+      --focus: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    a:focus,
+    button:focus,
+    input:focus,
+    textarea:focus {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 0;
+      background: black;
+      color: white;
+      padding: 0.75rem 1rem;
+      z-index: 999;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    header,
+    footer {
+      background: #111827;
+      color: white;
+      padding: 1rem 2rem;
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    nav a[aria-current="page"] {
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    .hero {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    article {
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+      max-width: 700px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.9rem 1.5rem;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Skip Navigation -->
+  <a href="#main-content" class="skip-link">
+    Skip to main content
+  </a>
+
+  <!-- HEADER -->
+  <header role="banner">
+    <div class="container">
+      <h1>John Doe</h1>
+
+      <!-- NAVIGATION -->
+      <nav aria-label="Primary Navigation">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section
+      class="hero"
+      aria-labelledby="hero-title"
+    >
+      <div>
+        <h2 id="hero-title">
+          Frontend Developer & Accessibility Advocate
+        </h2>
+
+        <p>
+          I build fast, semantic, accessible web experiences
+          following modern HTML5 and WCAG standards.
+        </p>
+
+        <a href="projects.html">
+          View My Projects
+        </a>
+      </div>
+
+      <div>
+        <img
+          src="profile.jpg"
+          alt="Portrait of John Doe smiling"
+          width="500"
+          height="500"
+        />
+      </div>
+    </section>
+
+    <!-- ABOUT PREVIEW -->
+    <section aria-labelledby="about-heading">
+      <h2 id="about-heading">About Me</h2>
+
+      <p>
+        I specialize in creating accessible, SEO-friendly,
+        responsive web applications with clean semantic code.
+      </p>
+
+      <a href="about.html">
+        Learn More About Me
+      </a>
+    </section>
+
+    <!-- PROJECTS -->
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Featured Projects</h2>
+
+      <div class="projects-grid">
+
+        <article aria-labelledby="project-1-title">
+          <h3 id="project-1-title">
+            Accessibility Dashboard
+          </h3>
+
+          <p>
+            WCAG-compliant admin dashboard with keyboard navigation
+            and screen reader support.
+          </p>
+
+          <a href="#">
+            View Project
+          </a>
+        </article>
+
+        <article aria-labelledby="project-2-title">
+          <h3 id="project-2-title">
+            Semantic Blog Platform
+          </h3>
+
+          <p>
+            SEO-optimized publishing platform using semantic HTML5.
+          </p>
+
+          <a href="#">
+            View Project
+          </a>
+        </article>
+
+        <article aria-labelledby="project-3-title">
+          <h3 id="project-3-title">
+            Inclusive E-Commerce UI
+          </h3>
+
+          <p>
+            Accessible online shopping interface optimized for all users.
+          </p>
+
+          <a href="#">
+            View Project
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact Me</h2>
+
+      <form
+        action="#"
+        method="post"
+        aria-label="Contact Form"
+      >
+
+        <div>
+          <label for="name">
+            Full Name
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            autocomplete="name"
+          />
+        </div>
+
+        <div>
+          <label for="email">
+            Email Address
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div>
+          <label for="message">
+            Message
+          </label>
+
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit">
+          Send Message
+        </button>
+
+      </form>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <p>
+      &copy; 2026 John Doe. All Rights Reserved.
+    </p>
+  </footer>
+
+</body>
+</html>
+
+
+<!-- =========================================================
+FILE: about.html
+========================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>About | John Doe Portfolio</title>
+
+  <meta
+    name="description"
+    content="Learn more about John Doe, frontend developer focused on accessibility and semantic HTML."
+  />
+
+  <link rel="canonical" href="https://example.com/about.html" />
+</head>
+
+<body>
+
+  <a href="#main-content" class="skip-link">
+    Skip to main content
+  </a>
+
+  <header>
+    <h1>About Me</h1>
+
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <section aria-labelledby="bio-heading">
+      <h2 id="bio-heading">
+        Professional Background
+      </h2>
+
+      <p>
+        I create inclusive digital experiences using semantic HTML,
+        CSS, JavaScript, and accessibility best practices.
+      </p>
+    </section>
+
+    <section aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+
+      <ul>
+        <li>Semantic HTML5</li>
+        <li>WCAG Accessibility</li>
+        <li>SEO Optimization</li>
+        <li>Responsive Design</li>
+        <li>JavaScript</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 John Doe</p>
+  </footer>
+
+</body>
+</html>
+
+
+<!-- =========================================================
+FILE: projects.html
+========================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Projects | John Doe Portfolio</title>
+
+  <meta
+    name="description"
+    content="Portfolio projects showcasing semantic HTML, accessibility, and frontend engineering."
+  />
+
+  <link rel="canonical" href="https://example.com/projects.html" />
+</head>
+
+<body>
+
+  <a href="#main-content" class="skip-link">
+    Skip to main content
+  </a>
+
+  <header>
+    <h1>Projects</h1>
+
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <section aria-labelledby="projects-list-heading">
+      <h2 id="projects-list-heading">
+        Portfolio Work
+      </h2>
+
+      <article>
+        <h3>Accessible Dashboard</h3>
+        <p>
+          Built with semantic HTML and ARIA support.
+        </p>
+      </article>
+
+      <article>
+        <h3>SEO Blog Platform</h3>
+        <p>
+          High-performance semantic publishing platform.
+        </p>
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 John Doe</p>
+  </footer>
+
+</body>
+</html>
+
+
+<!-- =========================================================
+FILE: contact.html
+========================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Contact | John Doe Portfolio</title>
+
+  <meta
+    name="description"
+    content="Contact John Doe for frontend development and accessibility consulting."
+  />
+
+  <link rel="canonical" href="https://example.com/contact.html" />
+</head>
+
+<body>
+
+  <a href="#main-content" class="skip-link">
+    Skip to main content
+  </a>
+
+  <header>
+    <h1>Contact</h1>
+
+    <nav aria-label="Primary Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <section aria-labelledby="contact-form-heading">
+
+      <h2 id="contact-form-heading">
+        Send a Message
+      </h2>
+
+      <form
+        action="#"
+        method="post"
+        aria-label="Accessible Contact Form"
+      >
+
+        <div>
+          <label for="full-name">
+            Full Name
+          </label>
+
+          <input
+            type="text"
+            id="full-name"
+            name="full-name"
+            required
+            autocomplete="name"
+          />
+        </div>
+
+        <div>
+          <label for="contact-email">
+            Email Address
+          </label>
+
+          <input
+            type="email"
+            id="contact-email"
+            name="contact-email"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div>
+          <label for="subject">
+            Subject
+          </label>
+
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="user-message">
+            Message
+          </label>
+
+          <textarea
+            id="user-message"
+            name="user-message"
+            rows="7"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit">
+          Submit
+        </button>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 John Doe</p>
+  </footer>
+
+</body>
+</html>
