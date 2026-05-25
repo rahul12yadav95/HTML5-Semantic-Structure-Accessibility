@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Responsive Portfolio Website</title>
+
+  <style>
+
+    /* =========================
+       CSS VARIABLES
+    ========================== */
+
+    :root {
+
+      --bg-color: #ffffff;
+      --text-color: #111827;
+      --card-color: #f3f4f6;
+      --primary-color: #2563eb;
+      --secondary-color: #1e293b;
+      --shadow: 0 5px 25px rgba(0,0,0,0.1);
+
+    }
+
+    /* DARK MODE */
+
+    body.dark-theme {
+
+      --bg-color: #0f172a;
+      --text-color: #f8fafc;
+      --card-color: #1e293b;
+      --primary-color: #3b82f6;
+      --secondary-color: #cbd5e1;
+      --shadow: 0 5px 25px rgba(255,255,255,0.05);
+
+    }
+
+    /* =========================
+       RESET
+    ========================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+
+      font-family: Arial, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: 0.3s ease;
+      line-height: 1.6;
+
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* =========================
+       GLOBAL
+    ========================== */
+
+    .container {
+
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    header {
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: var(--bg-color);
+      box-shadow: var(--shadow);
+
+    }
+
+    .navbar {
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 1rem 0;
+
+    }
+
+    .logo {
+
+      font-size: 2rem;
+      font-weight: bold;
+
+    }
+
+    .logo span {
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+
+      display: flex;
+      gap: 2rem;
+
+    }
+
+    .nav-links a {
+
+      color: var(--text-color);
+      font-weight: bold;
+      transition: 0.3s;
+
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    #theme-toggle {
+
+      border: none;
+      background: var(--primary-color);
+      color: white;
+
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+
+      cursor: pointer;
+      font-size: 1rem;
+
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+
+    }
+
+    .hero-grid {
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 4rem;
+      align-items: center;
+
+    }
+
+    .hero-content h1 {
+
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+
+    }
+
+    .hero-content h2 {
+
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+
+    }
+
+    .hero-content p {
+
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+
+    }
+
+    .hero-buttons {
+
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+    }
+
+    .btn {
+
+      padding: 1rem 2rem;
+      border-radius: 10px;
+
+      font-weight: bold;
+      transition: 0.3s ease;
+
+      display: inline-block;
+
+    }
+
+    .primary-btn {
+
+      background: var(--primary-color);
+      color: white;
+
+    }
+
+    .secondary-btn {
+
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+
+    }
+
+    .btn:hover {
+
+      transform: translateY(-5px);
+
+    }
+
+    .hero-image img {
+
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+
+    }
+
+    /* =========================
+       ABOUT
+    ========================== */
+
+    .about-grid {
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 4rem;
+      align-items: center;
+
+    }
+
+    .about-image img {
+
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+
+    }
+
+    .about-content p {
+
+      margin-bottom: 1rem;
+
+    }
+
+    /* =========================
+       SKILLS
+    ========================== */
+
+    .skills-grid {
+
+      display: grid;
+
+      grid-template-columns:
+      repeat(auto-fit, minmax(220px, 1fr));
+
+      gap: 2rem;
+
+    }
+
+    .skill-card {
+
+      background: var(--card-color);
+      padding: 2rem;
+
+      border-radius: 20px;
+      text-align: center;
+
+      box-shadow: var(--shadow);
+      transition: 0.3s ease;
+
+    }
+
+    .skill-card:hover {
+
+      transform: translateY(-10px);
+
+    }
+
+    .skill-card h3 {
+
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+
+    }
+
+    /* =========================
+       PROJECTS
+    ========================== */
+
+    .projects-grid {
+
+      display: grid;
+
+      grid-template-columns:
+      repeat(auto-fit, minmax(300px, 1fr));
+
+      gap: 2rem;
+
+    }
+
+    .project-card {
+
+      background: var(--card-color);
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      box-shadow: var(--shadow);
+      transition: 0.3s ease;
+
+    }
+
+    .project-card:hover {
+
+      transform: translateY(-10px);
+
+    }
+
+    .project-content {
+
+      padding: 1.5rem;
+
+    }
+
+    .project-content h3 {
+
+      margin-bottom: 1rem;
+
+    }
+
+    .project-content p {
+
+      margin-bottom: 1rem;
+
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact-grid {
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 4rem;
+
+    }
+
+    .contact-info p {
+
+      margin-bottom: 1rem;
+
+    }
+
+    .contact-form {
+
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+
+      padding: 1rem;
+
+      border-radius: 10px;
+      border: 1px solid #ccc;
+
+      background: var(--card-color);
+      color: var(--text-color);
+
+      outline: none;
+
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+
+      text-align: center;
+      padding: 2rem 0;
+
+      background: var(--card-color);
+
+    }
+
+    /* =========================
+       RESPONSIVE DESIGN
+    ========================== */
+
+    /* TABLET */
+
+    @media (max-width: 992px) {
+
+      .hero-grid,
+      .about-grid,
+      .contact-grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 768px) {
+
+      .navbar {
+
+        flex-direction: column;
+        gap: 1rem;
+
+      }
+
+      .nav-links {
+
+        flex-wrap: wrap;
+        justify-content: center;
+
+        gap: 1rem;
+
+      }
+
+      .hero-content h1 {
+
+        font-size: 2.5rem;
+
+      }
+
+      .section-title {
+
+        font-size: 2rem;
+
+      }
+
+    }
+
+    /* SMALL MOBILE */
+
+    @media (max-width: 480px) {
+
+      .hero-content h1 {
+
+        font-size: 2rem;
+
+      }
+
+      .btn {
+
+        width: 100%;
+        text-align: center;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header>
+
+    <div class="container navbar">
+
+      <h1 class="logo">
+        Rahul<span>.</span>
+      </h1>
+
+      <nav>
+
+        <ul class="nav-links">
+
+          <li><a href="#home">Home</a></li>
+
+          <li><a href="#about">About</a></li>
+
+          <li><a href="#skills">Skills</a></li>
+
+          <li><a href="#projects">Projects</a></li>
+
+          <li><a href="#contact">Contact</a></li>
+
+        </ul>
+
+      </nav>
+
+      <button id="theme-toggle">
+        🌙
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- =========================
+       HERO SECTION
+  ========================== -->
+
+  <section class="hero" id="home">
+
+    <div class="container hero-grid">
+
+      <div class="hero-content">
+
+        <h1>Hello, I'm Rahul</h1>
+
+        <h2>Frontend Developer & UI Designer</h2>
+
+        <p>
+          I create modern responsive websites using
+          HTML5, CSS3, CSS Grid, Flexbox and JavaScript.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#projects" class="btn primary-btn">
+            View Projects
+          </a>
+
+          <a href="#contact" class="btn secondary-btn">
+            Contact Me
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="hero-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop"
+          alt="Developer"
+        />
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       ABOUT
+  ========================== -->
+
+  <section class="section" id="about">
+
+    <div class="container about-grid">
+
+      <div class="about-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop"
+          alt="About"
+        />
+
+      </div>
+
+      <div class="about-content">
+
+        <h2 class="section-title">
+          About Me
+        </h2>
+
+        <p>
+          I am a passionate web developer focused on
+          creating responsive and user-friendly websites.
+        </p>
+
+        <p>
+          My expertise includes HTML5, CSS3,
+          Flexbox, CSS Grid, animations,
+          and responsive web architecture.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       SKILLS
+  ========================== -->
+
+  <section class="section" id="skills">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Skills
+      </h2>
+
+      <div class="skills-grid">
+
+        <div class="skill-card">
+
+          <h3>HTML5</h3>
+
+          <p>
+            Semantic and accessible structure.
+          </p>
+
+        </div>
+
+        <div class="skill-card">
+
+          <h3>CSS3</h3>
+
+          <p>
+            Responsive layouts and animations.
+          </p>
+
+        </div>
+
+        <div class="skill-card">
+
+          <h3>JavaScript</h3>
+
+          <p>
+            Interactive and dynamic UI design.
+          </p>
+
+        </div>
+
+        <div class="skill-card">
+
+          <h3>Responsive Design</h3>
+
+          <p>
+            Mobile-first modern architecture.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       PROJECTS
+  ========================== -->
+
+  <section class="section" id="projects">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Projects
+      </h2>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"
+            alt="Project"
+          />
+
+          <div class="project-content">
+
+            <h3>Portfolio Website</h3>
+
+            <p>
+              Responsive personal portfolio
+              built using CSS Grid and Flexbox.
+            </p>
+
+            <a href="#" class="btn primary-btn">
+              View
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="project-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop"
+            alt="Project"
+          />
+
+          <div class="project-content">
+
+            <h3>UI Dashboard</h3>
+
+            <p>
+              Advanced responsive admin dashboard design.
+            </p>
+
+            <a href="#" class="btn primary-btn">
+              View
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="project-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop"
+            alt="Project"
+          />
+
+          <div class="project-content">
+
+            <h3>Landing Page</h3>
+
+            <p>
+              Pixel-perfect responsive landing page UI.
+            </p>
+
+            <a href="#" class="btn primary-btn">
+              View
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       CONTACT
+  ========================== -->
+
+  <section class="section" id="contact">
+
+    <div class="container contact-grid">
+
+      <div class="contact-info">
+
+        <h2 class="section-title">
+          Contact Me
+        </h2>
+
+        <p>Email: rahul@example.com</p>
+
+        <p>Phone: +91 9876543210</p>
+
+        <p>Location: Uttar Pradesh, India</p>
+
+      </div>
+
+      <form class="contact-form">
+
+        <input
+          type="text"
+          placeholder="Your Name"
+          required
+        />
+
+        <input
+          type="email"
+          placeholder="Your Email"
+          required
+        />
+
+        <textarea
+          rows="6"
+          placeholder="Your Message"
+          required
+        ></textarea>
+
+        <button class="btn primary-btn">
+          Send Message
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <p>
+        © 2026 Rahul Portfolio Website
+      </p>
+
+    </div>
+
+  </footer>
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    const themeToggle =
+    document.getElementById("theme-toggle");
+
+    themeToggle.addEventListener("click", () => {
+
+      document.body.classList.toggle("dark-theme");
+
+      if (
+        document.body.classList.contains("dark-theme")
+      ) {
+
+        themeToggle.textContent = "☀️";
+
+      } else {
+
+        themeToggle.textContent = "🌙";
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
