@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather Dashboard</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#4facfe,#00f2fe);
+    }
+
+    .container{
+      width:380px;
+      background:white;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+      text-align:center;
+    }
+
+    h1{
+      margin-bottom:20px;
+      color:#333;
+    }
+
+    .search-box{
+      display:flex;
+      gap:10px;
+      margin-bottom:20px;
+    }
+
+    .search-box input{
+      flex:1;
+      padding:12px;
+      border:2px solid #ddd;
+      border-radius:10px;
+      outline:none;
+      font-size:16px;
+    }
+
+    .search-box button{
+      padding:12px 18px;
+      border:none;
+      border-radius:10px;
+      background:#0077ff;
+      color:white;
+      cursor:pointer;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .search-box button:hover{
+      background:#005fd1;
+    }
+
+    .weather-card{
+      background:#f7f7f7;
+      padding:20px;
+      border-radius:15px;
+    }
+
+    .weather-card h2{
+      margin-bottom:15px;
+      color:#222;
+    }
+
+    .weather-card p{
+      margin:10px 0;
+      font-size:18px;
+      color:#444;
+    }
+
+    .error{
+      margin-top:15px;
+      color:red;
+      font-weight:bold;
+    }
+
+    .loading{
+      margin-top:10px;
+      color:#0077ff;
+      font-weight:bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🌤 Weather Dashboard</h1>
+
+    <div class="search-box">
+      <input type="text" id="cityInput" placeholder="Enter city name">
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <div class="loading" id="loading"></div>
+
+    <div class="weather-card">
+      <h2 id="cityName">--</h2>
+
+      <p id="temperature">🌡 Temperature: --</p>
+      <p id="humidity">💧 Humidity: --</p>
+      <p id="windSpeed">🌬 Wind Speed: --</p>
+      <p id="condition">☁ Condition: --</p>
+    </div>
+
+    <p class="error" id="errorMessage"></p>
+  </div>
+
+  <script>
+    // ==============================
+    // PUT YOUR API KEY HERE
+    // ==============================
+    const apiKey = "YOUR_API_KEY";
+
+    // DOM Elements
+    const searchBtn = document.getElementById("searchBtn");
+    const cityInput = document.getElementById("cityInput");
+
+    const cityName = document.getElementById("cityName");
+    const temperature = document.getElementById("temperature");
+    const humidity = document.getElementById("humidity");
+    const windSpeed = document.getElementById("windSpeed");
+    const condition = document.getElementById("condition");
+
+    const errorMessage = document.getElementById("errorMessage");
+    const loading = document.getElementById("loading");
+
+    // Search Button Click
+    searchBtn.addEventListener("click", () => {
+      const city = cityInput.value.trim();
+
+      if(city !== ""){
+        getWeather(city);
+      } else {
+        errorMessage.textContent = "Please enter a city name.";
+      }
+    });
+
+    // Enter Key Support
+    cityInput.addEventListener("keypress", (e) => {
+      if(e.key === "Enter"){
+        searchBtn.click();
+      }
+    });
+
+    // Fetch Weather Function
+    async function getWeather(city){
+
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+      try{
+
+        // Loading
+        loading.textContent = "Loading...";
+        errorMessage.textContent = "";
+
+        // Fetch API
+        const response = await fetch(url);
+
+        // Error Handling
+        if(!response.ok){
+          throw new Error("City not found!");
+        }
+
+        // Convert to JSON
+        const data = await response.json();
+
+        // Parse Nested JSON
+        const temp = data.main.temp;
+        const hum = data.main.humidity;
+        const wind = data.wind.speed;
+        const weatherCondition = data.weather[0].description;
+
+        // Update UI
+        cityName.textContent = `📍 ${data.name}`;
+        temperature.textContent = `🌡 Temperature: ${temp} °C`;
+        humidity.textContent = `💧 Humidity: ${hum}%`;
+        windSpeed.textContent = `🌬 Wind Speed: ${wind} m/s`;
+        condition.textContent = `☁ Condition: ${weatherCondition}`;
+
+        loading.textContent = "";
+
+      } catch(error){
+
+        loading.textContent = "";
+
+        errorMessage.textContent = error.message;
+
+        // Reset UI
+        cityName.textContent = "--";
+        temperature.textContent = "🌡 Temperature: --";
+        humidity.textContent = "💧 Humidity: --";
+        windSpeed.textContent = "🌬 Wind Speed: --";
+        condition.textContent = "☁ Condition: --";
+      }
+    }
+  </script>
+
+</body>
+</html>
